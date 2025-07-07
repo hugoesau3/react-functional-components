@@ -1,0 +1,19 @@
+main {
+  background-color: aliceblue;
+  padding: 10px;
+}
+
+.song-list-search {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.song {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: azure;
+  padding: 15px 10px;
+  border-radius: 10px;
+}/*# sourceMappingURL=styles.css.map */
