@@ -1,19 +1,16 @@
 main {
-  background-color: aliceblue;
-  padding: 10px;
+  background-color: #f4f9ff; /* Fondo suave */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  max-width: 1200px;
+  font-family: "Roboto", Arial, sans-serif;
+  margin-right: 40px;
+  max-height: 100vh;
+  overflow-y: auto; /* Permite el desplazamiento vertical */
 }
 
 .song-list-search {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-}
-
-.song {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  background-color: azure;
-  padding: 15px 10px;
-  border-radius: 10px;
 }/*# sourceMappingURL=styles.css.map */

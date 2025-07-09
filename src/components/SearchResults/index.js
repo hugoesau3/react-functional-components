@@ -1,32 +1,62 @@
 import './styles.css';
-import React, { useState, useEffect } from 'react';
-import Song from '../Song';
+import React, { useState } from 'react';
+import Result from '../Result';
+import useFetchResults from '../../hooks/FetchResults';
 
 const SearchResults = ({ addSongToLibrary }) => {
-    const [songs, setSongs] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [query, setQuery] = useState('');
 
-    useEffect(() => {
-        const fetchedSongs = [
-            { id: 1, title: 'Song One', artist: 'Artist A', duration: '3:45' },
-            { id: 2, title: 'Song Two', artist: 'Artist B', duration: '4:20' },
-            { id: 3, title: 'Song Three', artist: 'Artist C', duration: '2:30' },
-            { id: 4, title: 'Song Four', artist: 'Artist D', duration: '5:15' },
-            { id: 5, title: 'Song Five', artist: 'Artist E', duration: '3:10' }
-        ];
-        setSongs(fetchedSongs);
-    }, []);
+
+    const { results, loading, error } = useFetchResults(query);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setQuery(searchTerm.trim());
+    };
 
     return (
         <main>
             <h2>Search</h2>
             <p>Here you can find your favorite songs.</p>
+
+            <form className="search-form" onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    placeholder="Search for songs..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                <button type="submit">Search</button>
+            </form>
+
             <div className="search-results">
                 <h3>Results:</h3>
-                <div className="song-list">
-                    {songs.map(song => (
-                        <Song key={song.id} song={song} onAddToLibrary={addSongToLibrary} />
-                    ))}
-                </div>
+
+                {loading && <p>Loading results...</p>}
+                {error && <p>Error: {error}</p>}
+                {!loading && !error && results && results.results && (
+                    <div className="song-list">
+                        {results.results.map((result, index) => {
+                            if (!result || !result.id) {
+                                console.warn(`Invalid result at index ${index}:`, result);
+                                return null;
+                            }
+
+                            return (
+                                <Result
+                                    key={result.id}
+                                    result={result}
+                                    onAddToLibrary={addSongToLibrary}
+                                />
+                            );
+                        })}
+                    </div>
+                )}
+
+                {!loading && !error && (!results || !results.results || results.results.length === 0) && (
+                    <p>No results found.</p>
+                )}
             </div>
         </main>
     );

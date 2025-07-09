@@ -1,0 +1,73 @@
+/* Imagen */
+img {
+    width: 60px; /* Tamaño ligeramente más grande */
+    height: 60px;
+    border-radius: 8px; /* Bordes más suaves */
+    margin-right: 15px;
+    margin-left: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    object-fit: cover; /* Asegura que la imagen se ajuste correctamente */
+}
+
+/* Contenedor de acciones */
+.result-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Espaciado uniforme entre los botones */
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* Contenedor principal */
+.result {
+    width: 220px; /* Más ancho para un diseño más espacioso */
+    border-radius: 12px;
+    background-color: #ffffff; /* Fondo blanco para un diseño limpio */
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para resaltar el contenedor */
+    transition: transform 0.2s, box-shadow 0.2s; /* Animación suave */
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    height: 100px;
+}
+
+.result:hover {
+    transform: scale(1.05); /* Efecto de zoom al pasar el mouse */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
+}
+
+/* Título y texto */
+.result h4 {
+    font-size: 16px;
+    color: #333333;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.result p {
+    font-size: 14px;
+    color: #666666;
+    margin: 0;
+    text-align: center;
+}
+
+/* Botones */
+.result-actions button {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    width: 80px; /* Ancho fijo para los botones */
+    text-align: center; /* Alinear texto al centro */
+    margin: 0 5px; /* Espacio entre los botones */
+}
+
+.result-actions button:hover {
+    background-color: #0056b3;
+}

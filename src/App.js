@@ -1,39 +1,41 @@
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import SearchResults from './components/SearchResults';
-import SongLibrary from './components/SongLibrary';
+import Library from './components/Library';
+import Details from './components/Details'; 
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 
 import './App.css'; // Assuming you have some global styles
 
 const App = () => {
-  const [librarySongs, setLibrarySongs] = useState([]);
-  const [searchResults, setSearchResults] = useState([
-    { id: 1, title: 'Song One', artist: 'Artist A', duration: '3:45' },
-    { id: 2, title: 'Song Two', artist: 'Artist B', duration: '4:20' },
-    { id: 3, title: 'Song Three', artist: 'Artist C', duration: '2:30' },
-    { id: 4, title: 'Song Four', artist: 'Artist D', duration: '5:15' },
-    { id: 5, title: 'Song Five', artist: 'Artist E', duration: '3:10' }
-  ]);
+  const [libraryItems, setLibraryItems] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
 
-  const addSongToLibrary = (song) => {
-    if (!librarySongs.some(librarySong => librarySong.id === song.id)) {
-      setLibrarySongs([...librarySongs, song]);
+  const addSongToLibrary = (result) => {
+    if (!libraryItems.some(libraryItem => libraryItem.id === result.id)) {
+      setLibraryItems([...libraryItems, result]);
     }
   };
 
   useEffect(() => {
-    console.log('Library updated:', librarySongs);
-  }, [librarySongs]);
+    console.log('Library updated:', libraryItems);
+  }, [libraryItems]);
 
   return (
+
     <>
       <Header />
 
-      <SearchResults addSongToLibrary={addSongToLibrary} />
-      
-      <SongLibrary songs={librarySongs} />
+      <BrowserRouter>
+        <SearchResults addSongToLibrary={addSongToLibrary} />
 
+        <Routes>
+          <Route path="/" element={<Library items={libraryItems} />} />
+          <Route path="details/:id" element={<Details libraryItems={libraryItems} />} />
+        </Routes>
+      </BrowserRouter>
     </>
+
   );
 };
 
