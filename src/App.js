@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { ThemeProvider } from 'styled-components'; 
+import theme from './Theme'; 
 import Header from './components/Header';
 import SearchResults from './components/SearchResults';
 import Library from './components/Library';
@@ -21,24 +23,28 @@ const App = () => {
   }, [libraryItems]);
 
   return (
-    <BrowserRouter>
-      <div className="min-h-screen flex flex-col bg-gray-50">
-        <Header />
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <div className="min-h-screen flex flex-col bg-gray-50">
+          <Header />
 
-        <div className="flex flex-1">
-          <aside className="w-full md:w-1/3 lg:w-1/4 bg-white p-4 shadow-md border-r">
-            <SearchResults addSongToLibrary={addSongToLibrary} />
-          </aside>
+          <div className="flex flex-1">
+            <aside className="w-full md:w-1/3 lg:w-1/4 bg-white p-4 shadow-md border-r">
+              <SearchResults 
+              addSongToLibrary={addSongToLibrary} 
+              addedItems={libraryItems}/>
+            </aside>
 
-          <main className="flex-1 p-6">
-            <Routes>
-              <Route path="/" element={<Library items={libraryItems} />} />
-              <Route path="details/:id" element={<Details libraryItems={libraryItems} />} />
-            </Routes>
-          </main>
+            <main className="flex-1 p-6">
+              <Routes>
+                <Route path="/" element={<Library items={libraryItems} />} />
+                <Route path="details/:id" element={<Details libraryItems={libraryItems} />} />
+              </Routes>
+            </main>
+          </div>
         </div>
-      </div>
-    </BrowserRouter>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 };
 

@@ -8,6 +8,7 @@ const theme = {
         darkGray: "#333333",
         lightGray: "#666666",
         error: "#dc3545",
+        success: '#16A34A',
     },
     fonts: {
         base: "'Roboto', Arial, sans-serif",

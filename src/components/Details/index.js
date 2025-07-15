@@ -25,9 +25,9 @@ const Details = ({ libraryItems }) => {
   return (
     <DetailsContainer>
       <DetailsHeader>
-        <BackButton onClick={() => window.history.back()}>
-          ← Back to Library
-        </BackButton>
+      <BackButton primary={true} onClick={() => window.history.back()}>
+        ← Back to Library
+      </BackButton>
       </DetailsHeader>
 
       <CoverImage src={item.cover_image} alt="Song cover" />

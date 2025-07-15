@@ -25,5 +25,9 @@ export const Actions = styled.div`
 `;
 
 export const ResultButton = styled.button`
-  ${tw`bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-md transition`}
+  ${tw`px-4 py-2 rounded text-white`}
+  background-color: ${(props) =>
+    props.isAdded ? props.theme.colors.success : props.theme.colors.primary};
+  cursor: ${(props) => (props.isAdded ? 'not-allowed' : 'pointer')};
+  opacity: ${(props) => (props.isAdded ? 0.6 : 1)};
 `;

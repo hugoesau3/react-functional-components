@@ -14,7 +14,7 @@ import {
   Message,
 } from './styles';
 
-const SearchResults = ({ addSongToLibrary }) => {
+const SearchResults = ({ addSongToLibrary, addedItems }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [query, setQuery] = useState('');
 
@@ -54,6 +54,7 @@ const SearchResults = ({ addSongToLibrary }) => {
                   key={result.id}
                   result={result}
                   onAddToLibrary={addSongToLibrary}
+                  addedItems={addedItems} // Pasa los elementos agregados
                 />
               ) : (
                 console.warn(`Invalid result at index ${index}:`, result)

@@ -8,7 +8,12 @@ import {
   ResultButton,
 } from './styles';
 
-const Result = ({ result, onAddToLibrary }) => {
+
+
+const Result = ({ result, onAddToLibrary, addedItems = [] }) => {
+  // Verifica si el elemento ya está en la lista de elementos agregados
+  const isAdded = addedItems.some((item) => item.id === result.id);
+
   return (
     <ResultContainer id={result.id}>
       <CoverImage
@@ -27,8 +32,11 @@ const Result = ({ result, onAddToLibrary }) => {
       </Info>
 
       <Actions>
-        <ResultButton onClick={() => onAddToLibrary(result)}>
-          Add to Library
+        <ResultButton
+          isAdded={isAdded}
+          onClick={() => !isAdded && onAddToLibrary(result)}
+        >
+          {isAdded ? 'Added' : 'Add to Library'}
         </ResultButton>
       </Actions>
     </ResultContainer>
